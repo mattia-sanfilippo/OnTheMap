@@ -112,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				4925BB9124483911003272BE /* Controller */,
-				4925BB902448390B003272BE /* View */,
 				4925BB8F24483904003272BE /* Model */,
 				4924507C2447691600985D30 /* AppDelegate.swift */,
 				4924507E2447691600985D30 /* SceneDelegate.swift */,
@@ -149,13 +148,6 @@
 				49471353244AE6A900C97ACB /* Location.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		4925BB902448390B003272BE /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		4925BB9124483911003272BE /* Controller */ = {

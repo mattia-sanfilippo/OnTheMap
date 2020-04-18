@@ -77,7 +77,6 @@ class UdacityClient {
     class func getLoggedInUserProfile(completion: @escaping (Bool, Error?) -> Void) {
         RequestHelpers.taskForGETRequest(url: Endpoints.getLoggedInUserProfile.url, apiType: "Udacity", responseType: UserProfile.self) { (response, error) in
             if let response = response {
-                print("First Name: \(response.firstName) && Last Name: \(response.lastName) && Full Name: \(response.nickname)")
                 Auth.firstName = response.firstName
                 Auth.lastName = response.lastName
                 completion(true, nil)
@@ -103,7 +102,7 @@ class UdacityClient {
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
-                print("Error loggin out")
+                print("Error logging out")
                 return
             }
             let range = 5..<data!.count
@@ -116,7 +115,7 @@ class UdacityClient {
     }
     
     class func getStudentLocation(completion: @escaping ([StudentInformation]?, Error?) -> Void) {
-        RequestHelpers.taskForGETRequest(url: Endpoints.getStudentLocation.url, apiType: "Parse", responseType: StudentsLocation.self) { (response, error) in
+        RequestHelpers.taskForGETRequest(url: Endpoints.getStudentLocation.url, apiType: "NewParse", responseType: StudentsLocation.self) { (response, error) in
             if let response = response {
                 completion(response.results, nil)
             } else {
@@ -127,7 +126,7 @@ class UdacityClient {
     
     class func addStudentLocation(information: StudentInformation, completion: @escaping (Bool, Error?) -> Void) {
         let body = "{\"uniqueKey\": \"\(information.uniqueKey ?? "")\", \"firstName\": \"\(information.firstName)\", \"lastName\": \"\(information.lastName)\",\"mapString\": \"\(information.mapString ?? "")\", \"mediaURL\": \"\(information.mediaURL ?? "")\",\"latitude\": \(information.latitude ?? 0.0), \"longitude\": \(information.longitude ?? 0.0)}"
-        RequestHelpers.taskForPOSTRequest(url: Endpoints.addStudentLocation.url, apiType: "Parse", responseType: PostLocationResponse.self, body: body, httpMethod: "POST") { (response, error) in
+        RequestHelpers.taskForPOSTRequest(url: Endpoints.addStudentLocation.url, apiType: "NewParse", responseType: PostLocationResponse.self, body: body, httpMethod: "POST") { (response, error) in
             if let response = response, response.createdAt != nil {
                 Auth.objectId = response.objectId ?? ""
                 completion(true, nil)
@@ -138,7 +137,7 @@ class UdacityClient {
     
     class func updateStudentLocation(information: StudentInformation, completion: @escaping (Bool, Error?) -> Void) {
         let body = "{\"uniqueKey\": \"\(information.uniqueKey ?? "")\", \"firstName\": \"\(information.firstName)\", \"lastName\": \"\(information.lastName)\",\"mapString\": \"\(information.mapString ?? "")\", \"mediaURL\": \"\(information.mediaURL ?? "")\",\"latitude\": \(information.latitude ?? 0.00), \"longitude\": \(information.longitude ?? 0.0)}"
-        RequestHelpers.taskForPOSTRequest(url: Endpoints.updateLocation.url, apiType: "Parse", responseType: UpdateLocationResponse.self, body: body, httpMethod: "PUT") { (response, error) in
+        RequestHelpers.taskForPOSTRequest(url: Endpoints.updateLocation.url, apiType: "NewParse", responseType: UpdateLocationResponse.self, body: body, httpMethod: "PUT") { (response, error) in
             if let response = response, response.updatedAt != nil {
                 completion(true, nil)
             }
