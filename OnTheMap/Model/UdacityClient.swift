@@ -67,9 +67,9 @@ class UdacityClient {
                         print("Logged in user's profile fetched.")
                     }
                 })
-                completion(true, nil)
+                completion(true, error)
             } else {
-                completion(false, nil)
+                completion(false, error)
             }
         }
     }

@@ -53,7 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.performSegue(withIdentifier: "login", sender: nil)
             }
         } else {
-            showAlert(message: "Please check your username and/or password and try again.", title: "Error")
+            showAlert(message: "Please check your username and/or password and try again.", title: error?.localizedDescription ?? "Generic Error")
         }
     }
     

@@ -10,14 +10,10 @@ import UIKit
 
 class ListTableViewController: UITableViewController {
     
-    // MARK: Outlets and Properties
-    
     @IBOutlet weak var studentTableView: UITableView!
     
     var students = [StudentInformation]()
     var myIndicator: UIActivityIndicatorView!
-    
-    // MARK: Life Cycle
 
     override func viewDidLoad() {
         myIndicator = UIActivityIndicatorView (style: UIActivityIndicatorView.Style.medium)
@@ -33,8 +29,6 @@ class ListTableViewController: UITableViewController {
         getStudentsList()
     }
     
-    // MARK: Logout
-    
     @IBAction func logout(_ sender: UIBarButtonItem) {
         showActivityIndicator()
         UdacityClient.logout {
@@ -45,13 +39,9 @@ class ListTableViewController: UITableViewController {
         }
     }
     
-    // MARK: Refresh list
-    
     @IBAction func refreshList(_ sender: UIBarButtonItem) {
         getStudentsList()
     }
-    
-    // MARK: Get list of students
     
     func getStudentsList() {
         showActivityIndicator()
@@ -63,8 +53,6 @@ class ListTableViewController: UITableViewController {
             }
         }
     }
-
-    // MARK: Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -86,8 +74,6 @@ class ListTableViewController: UITableViewController {
         let student = students[indexPath.row]
         openLink(student.mediaURL ?? "")
     }
-    
-    // MARK: Show/Hide Activity Indicator
     
     func showActivityIndicator() {
         myIndicator.isHidden = false
