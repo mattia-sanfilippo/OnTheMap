@@ -62,9 +62,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 annotation.subtitle = mediaURL
                 self.annotations.append(annotation)
             }
-            DispatchQueue.main.async {
-                self.mapView.addAnnotations(self.annotations)
-                self.activityIndicator.stopAnimating()
+            if error != nil {
+                self.showAlert(message: error?.localizedDescription ?? "Generic error", title: "An error occurred")
+            } else {
+                DispatchQueue.main.async {
+                    self.mapView.addAnnotations(self.annotations)
+                    self.activityIndicator.stopAnimating()
+                }
             }
         }
     }

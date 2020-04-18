@@ -61,7 +61,7 @@ class RequestHelpers {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         } else {
-            request.addValue("appllication/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         request.httpBody = body.data(using: String.Encoding.utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in

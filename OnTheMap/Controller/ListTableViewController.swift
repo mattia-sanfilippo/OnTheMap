@@ -47,9 +47,13 @@ class ListTableViewController: UITableViewController {
         showActivityIndicator()
         UdacityClient.getStudentLocation() {students, error in
             self.students = students ?? []
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.hideActivityIndicator()
+            if error != nil {
+                self.showAlert(message: error?.localizedDescription ?? "Generic error", title: "An error occurred")
+            } else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.hideActivityIndicator()
+                }
             }
         }
     }
